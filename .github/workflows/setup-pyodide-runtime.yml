@@ -1,0 +1,69 @@
+name: Set up Voidworks Python runtime
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-runtime:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out VoidWorks
+        uses: actions/checkout@v4
+
+      - name: Download official Pyodide core 314.0.7
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://github.com/pyodide/pyodide/releases/download/314.0.7/pyodide-core-314.0.7.tar.bz2"
+          curl --fail --location --retry 3 "$URL" -o /tmp/pyodide-core.tar.bz2
+          echo "2abdcc2e35208af406e07724cffa85bc582ced97e9028383ecf5462541393f95  /tmp/pyodide-core.tar.bz2" | sha256sum -c -
+
+      - name: Extract only the browser runtime files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/pyodide-core
+          mkdir -p /tmp/pyodide-core
+          tar -xjf /tmp/pyodide-core.tar.bz2 -C /tmp/pyodide-core
+
+          mkdir -p python/runtime
+          rm -f python/runtime/README.txt
+
+          for file in \
+            pyodide.js \
+            pyodide.mjs \
+            pyodide.asm.mjs \
+            pyodide.asm.wasm \
+            python_stdlib.zip \
+            pyodide-lock.json
+          do
+            found="$(find /tmp/pyodide-core -type f -name "$file" -print -quit)"
+            if [ -z "$found" ]; then
+              echo "ERROR: $file was not found in the official archive."
+              exit 1
+            fi
+            cp "$found" "python/runtime/$file"
+          done
+
+          echo "Installed files:"
+          ls -lh python/runtime
+
+      - name: Commit runtime into VoidWorks
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "voidworks-runtime-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add python/runtime
+
+          if git diff --cached --quiet; then
+            echo "Runtime already up to date."
+            exit 0
+          fi
+
+          git commit -m "Add self-hosted Pyodide 314.0.7 runtime"
+          git push
