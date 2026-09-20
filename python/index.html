@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#08090d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Voidworks Python</title>
+  <meta name="description" content="Fast, private Python editor that runs in your browser.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="topbar">
+    <a class="brand" href="../" title="Back to Voidworks">
+      <span class="brand-mark"><i></i><i></i></span>
+      <span class="brand-copy"><b>VOIDWORKS</b><small>/ PYTHON</small></span>
+    </a>
+
+    <div class="runtime">
+      <span id="runtimeDot" class="runtime-dot loading"></span>
+      <span id="runtimeText">Starting Python…</span>
+    </div>
+
+    <button id="moreBtn" class="icon-btn" aria-label="Menu">•••</button>
+  </header>
+
+  <main class="app-shell">
+    <section class="toolbar">
+      <div class="file-chip">
+        <span class="py-icon">Py</span>
+        <input id="fileName" value="main.py" aria-label="Filename">
+        <span id="saveState" class="save-state">Saved</span>
+      </div>
+
+      <div class="toolbar-actions">
+        <button id="newBtn" class="tool-btn">New</button>
+        <button id="openBtn" class="tool-btn">Open</button>
+        <button id="downloadBtn" class="tool-btn">Download</button>
+        <button id="packagesBtn" class="tool-btn">Packages</button>
+        <button id="runBtn" class="run-btn" disabled><span>▶</span> Run</button>
+        <button id="stopBtn" class="stop-btn" disabled><span>■</span> Stop</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <section class="editor-panel panel">
+        <div class="panel-head">
+          <span>EDITOR</span>
+          <div class="editor-meta">
+            <span id="cursorInfo">Ln 1, Col 1</span>
+            <span>Python</span>
+          </div>
+        </div>
+
+        <div class="editor-wrap">
+          <div id="lineNumbers" class="line-numbers">1</div>
+          <textarea id="editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Python code editor"></textarea>
+        </div>
+
+        <div class="mobile-codebar">
+          <button data-insert="    ">Tab</button>
+          <button data-pair="()">()</button>
+          <button data-pair="[]">[]</button>
+          <button data-pair="{}">{}</button>
+          <button data-pair='""'>""</button>
+          <button data-insert=":">:</button>
+          <button data-insert="#">#</button>
+        </div>
+      </section>
+
+      <section class="right-column">
+        <section class="console-panel panel">
+          <div class="panel-head">
+            <span>OUTPUT</span>
+            <div class="panel-actions">
+              <button id="inputBtn">Input</button>
+              <button id="clearBtn">Clear</button>
+            </div>
+          </div>
+
+          <pre id="console" class="console"><span class="muted">Python output will appear here.</span></pre>
+
+          <div id="stdinBox" class="stdin-box" hidden>
+            <label>PROGRAM INPUT <span>one input() response per line</span></label>
+            <textarea id="stdin" placeholder="Alice&#10;42"></textarea>
+          </div>
+        </section>
+
+        <section id="turtlePanel" class="turtle-panel panel">
+          <div class="panel-head">
+            <span>TURTLE</span>
+            <div class="panel-actions">
+              <span id="turtleStatus">Canvas ready</span>
+              <button id="clearTurtleBtn">Clear</button>
+            </div>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="turtleCanvas"></canvas>
+            <div id="turtleEmpty" class="canvas-empty">
+              <div>◇</div>
+              <b>Turtle canvas</b>
+              <span>Run code using <code>import turtle</code></span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <div id="packagesModal" class="modal-backdrop" hidden>
+    <section class="modal">
+      <div class="modal-head">
+        <div>
+          <span class="kicker">PACKAGE MANAGER</span>
+          <h2>Install a Python package</h2>
+        </div>
+        <button class="close-btn" data-close="packagesModal">×</button>
+      </div>
+
+      <p class="modal-copy">Install compatible packages into the current browser runtime. Try <code>numpy</code>, <code>pandas</code>, <code>matplotlib</code>, <code>requests</code> or a pure-Python package from PyPI.</p>
+
+      <form id="packageForm" class="package-form">
+        <input id="packageName" placeholder="Package name, e.g. numpy" autocomplete="off">
+        <button id="installBtn" type="submit">Install</button>
+      </form>
+
+      <div id="packageStatus" class="package-status">No package installation running.</div>
+
+      <div class="installed">
+        <div class="installed-head">
+          <b>Installed this session</b>
+          <span id="installedCount">0</span>
+        </div>
+        <div id="installedList" class="chips"><span class="muted">Nothing added yet.</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="menuModal" class="modal-backdrop" hidden>
+    <section class="modal compact">
+      <div class="modal-head">
+        <div>
+          <span class="kicker">VOIDWORKS / PYTHON</span>
+          <h2>Editor options</h2>
+        </div>
+        <button class="close-btn" data-close="menuModal">×</button>
+      </div>
+      <div class="menu-grid">
+        <button id="exampleBasic">Load basic example</button>
+        <button id="exampleSleep">Load sleep + random</button>
+        <button id="exampleTurtle">Load Turtle example</button>
+        <button id="resetRuntime">Restart Python runtime</button>
+        <button id="themeBtn">Toggle light / dark</button>
+      </div>
+      <div class="about-note">Code is saved locally in this browser. No account is required.</div>
+    </section>
+  </div>
+
+  <input id="filePicker" type="file" accept=".py,.txt,text/plain" hidden>
+
+  <script src="app.js"></script>
+</body>
+</html>
