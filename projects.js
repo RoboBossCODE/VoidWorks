@@ -10,15 +10,14 @@ const PROJECTS = [
     glow: "rgba(157,247,212,.55)"
   },
   {
-    name: "Project Slot 02",
-    description: "Reserved for the next tool we build.",
+    name: "Voidworks Python",
+    description: "Fast, private Python editor with packages, Turtle graphics and no login.",
     category: "tools",
-    status: "wip",
-    icon: "⌘",
-    url: "#",
-    tag: "Coming soon",
-    glow: "rgba(126,140,255,.45)",
-    placeholder: true
+    status: "live",
+    icon: "Py",
+    url: "./python/",
+    tag: "Python",
+    glow: "rgba(157,247,212,.55)",
   },
   {
     name: "Project Slot 03",
