@@ -65,3 +65,26 @@ Upload all files to a repository or a `/python/` directory inside the Voidworks 
 - Uses Pyodide 314.0.7 on both runtime sources.
 - Adds a primary CDN and npm/jsDelivr fallback.
 - Shows cleaner runtime loading and failure messages.
+
+## v1.3
+
+- Cache-busting release.
+- Renamed `app.js` -> `app-v13.js`.
+- Renamed `python-worker.js` -> `python-worker-v13.js`.
+- Added build query strings to force fresh GitHub Pages/browser fetches.
+- This release is intended specifically to eliminate stale v1.1/v1.2 cached JavaScript.
+
+
+## v1.4 — self-hosted runtime
+
+This release removes the jsDelivr dependency from Python startup.
+
+The GitHub Action in `.github/workflows/setup-pyodide-runtime.yml` downloads
+the official Pyodide 314.0.7 core release, verifies its SHA-256, extracts the
+six required browser runtime files, and commits them to `python/runtime/`.
+
+After the action has run, the worker loads:
+
+`./runtime/pyodide.js`
+
+so Python startup is served from the same GitHub Pages origin as Voidworks.
