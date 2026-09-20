@@ -88,3 +88,11 @@ After the action has run, the worker loads:
 `./runtime/pyodide.js`
 
 so Python startup is served from the same GitHub Pages origin as Voidworks.
+
+
+## v1.5
+
+- Switched the Python runtime worker to a JavaScript module worker.
+- Uses `import { loadPyodide } from "./runtime/pyodide.mjs"`.
+- Compatible with Pyodide 314's removal of classic worker support.
+- Cache-busted app and worker filenames.
