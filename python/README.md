@@ -59,8 +59,9 @@ The package button uses Pyodide's `micropip`. Packages that are pure Python or h
 Upload all files to a repository or a `/python/` directory inside the Voidworks repository. No build process is required.
 
 
-## v1.1
+## v1.2
 
-- Added resilient Pyodide runtime loading with a second CDN path.
-- Cleaner startup status and runtime-failure messages.
-- No raw worker traceback shown for normal CDN load failures.
+- Fixed the JavaScript syntax error introduced in v1.1.
+- Uses Pyodide 314.0.7 on both runtime sources.
+- Adds a primary CDN and npm/jsDelivr fallback.
+- Shows cleaner runtime loading and failure messages.

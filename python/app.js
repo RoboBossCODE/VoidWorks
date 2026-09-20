@@ -93,7 +93,7 @@ function onWorkerMessage(e){
       appendConsole(
         "Python runtime could not start.\n\n" +
         m.message +
-        "\n\nTry refreshing once. If it still fails, the browser/network may be blocking the CDN.",
+        "\n\nTry refreshing once. If it still fails, the browser or network may be blocking the CDN.",
         "error"
       );
       break;
