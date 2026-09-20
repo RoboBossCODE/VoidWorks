@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#08090d">
+  <title>VOIDWORKS</title>
+  <meta name="description" content="Voidworks — tools, experiments and projects.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="topbar">
+    <a class="brand" href="#">
+      <span class="brand-mark"><i></i><i></i></span>
+      <span>VOIDWORKS</span>
+    </a>
+    <nav>
+      <button class="nav active" data-filter="all">All</button>
+      <button class="nav" data-filter="tools">Tools</button>
+      <button class="nav" data-filter="labs">Labs</button>
+      <button class="nav" data-filter="games">Games</button>
+    </nav>
+    <button id="themeBtn" class="theme">◐</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> INDEPENDENT DIGITAL WORKSHOP</div>
+        <h1>Useful things.<br><em>Built properly.</em></h1>
+        <p>Small tools, experiments and projects collected in one place.</p>
+        <div class="hero-actions">
+          <button id="browseBtn" class="btn primary">Browse projects</button>
+          <button id="randomBtn" class="btn secondary">Open something random</button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+        <div class="wire-grid"></div>
+        <div class="glyph"><span></span><span></span><span></span><span></span></div>
+      </div>
+    </section>
+
+    <section class="section-head" id="projects">
+      <div>
+        <div class="kicker">PROJECT INDEX</div>
+        <h2>Everything in Voidworks</h2>
+      </div>
+      <div class="right-controls">
+        <label class="search">
+          <span>⌕</span>
+          <input id="search" type="search" placeholder="Search projects..." autocomplete="off">
+        </label>
+        <span id="projectCount" class="count"></span>
+      </div>
+    </section>
+
+    <section id="projectGrid" class="project-grid"></section>
+
+    <section id="emptyState" class="empty" hidden>
+      <div>∅</div>
+      <h3>No projects found</h3>
+      <p>Try another search or category.</p>
+    </section>
+
+    <section class="system-card">
+      <div>
+        <span>VOIDWORKS / SYSTEM</span>
+        <strong>Built to grow.</strong>
+      </div>
+      <p>Every new project is added from one simple data file, so the hub stays clean as it gets bigger.</p>
+      <code>v0.1</code>
+    </section>
+  </main>
+
+  <footer>
+    <span>VOIDWORKS</span>
+    <span>Tools • Experiments • Projects</span>
+    <span id="year"></span>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
