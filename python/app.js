@@ -78,6 +78,9 @@ function onWorkerMessage(e){
   }
 
   switch(m.type){
+    case "bootStatus":
+      setRuntime("loading", m.message || "Starting Python…");
+      break;
     case "ready":
       ready = true;
       setRuntime("ready", "Python ready");
@@ -85,8 +88,14 @@ function onWorkerMessage(e){
       appendConsole("Python runtime ready.\n", "system", true);
       break;
     case "bootError":
-      setRuntime("error", "Could not start Python");
-      appendConsole(m.message + "\n", "error");
+      setRuntime("error", "Python runtime unavailable");
+      consoleEl.innerHTML = "";
+      appendConsole(
+        "Python runtime could not start.\n\n" +
+        m.message +
+        "\n\nTry refreshing once. If it still fails, the browser/network may be blocking the CDN.",
+        "error"
+      );
       break;
     case "stdout": appendConsole(m.text); break;
     case "stderr": appendConsole(m.text, "error"); break;

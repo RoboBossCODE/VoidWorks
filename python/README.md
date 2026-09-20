@@ -57,3 +57,10 @@ The package button uses Pyodide's `micropip`. Packages that are pure Python or h
 ## Hosting on GitHub Pages
 
 Upload all files to a repository or a `/python/` directory inside the Voidworks repository. No build process is required.
+
+
+## v1.1
+
+- Added resilient Pyodide runtime loading with a second CDN path.
+- Cleaner startup status and runtime-failure messages.
+- No raw worker traceback shown for normal CDN load failures.

@@ -1,29 +1,57 @@
 
 const PYODIDE_VERSION = "v314.0.7";
-const BASE = `https://cdn.jsdelivr.net/pyodide/${PYODIDE_VERSION}/full/`;
+const PYODIDE_SOURCES = [
+  `https://cdn.jsdelivr.net/pyodide/${PYODIDE_VERSION}/full/`,
+  `https://cdn.jsdelivr.net/npm/pyodide@0.29.0/`
+];
 let pyodide = null;
+let activeBase = null;
 let stdinLines = [];
 let stdinIndex = 0;
 
 function send(type, data={}) { postMessage({type, ...data}); }
 
 async function boot() {
-  try {
-    importScripts(BASE + "pyodide.js");
-    pyodide = await loadPyodide({
-      indexURL: BASE,
-      stdout: (line) => send("stdout", {text: line + "\n"}),
-      stderr: (line) => send("stderr", {text: line + "\n"}),
-      stdin: () => {
-        if (stdinIndex >= stdinLines.length) return "";
-        return stdinLines[stdinIndex++];
-      }
-    });
-    await installTurtleShim();
-    send("ready");
-  } catch (err) {
-    send("bootError", {message: String(err && err.stack ? err.stack : err)});
+  const errors = [];
+
+  for (const base of PYODIDE_SOURCES) {
+    try {
+      send("bootStatus", {message:`Trying Python runtime from ${new URL(base).hostname}…`});
+      importScripts(base + "pyodide.js");
+      activeBase = base;
+
+      pyodide = await loadPyodide({
+        indexURL: base,
+        stdout: (line) => send("stdout", {text: line + "
+"}),
+        stderr: (line) => send("stderr", {text: line + "
+"}),
+        stdin: () => {
+          if (stdinIndex >= stdinLines.length) return "";
+          return stdinLines[stdinIndex++];
+        }
+      });
+
+      await installTurtleShim();
+      send("ready");
+      return;
+    } catch (err) {
+      errors.push(`${base}: ${String(err && err.message ? err.message : err)}`);
+      pyodide = null;
+      activeBase = null;
+    }
   }
+
+  send("bootError", {
+    message:
+      "Voidworks Python could not load the Python runtime from either CDN. " +
+      "This is usually a network/CDN/browser restriction.
+
+" +
+      errors.join("
+
+")
+  });
 }
 
 async function installTurtleShim() {
