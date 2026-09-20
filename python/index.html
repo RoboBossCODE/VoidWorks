@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#08090d">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>Voidworks Python · v1.5</title>
+  <title>Voidworks Python · v1.6</title>
   <meta name="description" content="Fast, private Python editor that runs in your browser.">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -79,6 +79,28 @@
               <button id="clearBtn">Clear</button>
             </div>
           </div>
+
+          <section id="friendlyError" class="friendly-error" hidden aria-live="polite">
+            <div class="error-title-row">
+              <div>
+                <span id="errorType" class="error-type">PythonError</span>
+                <strong id="errorMessage">Something went wrong.</strong>
+              </div>
+              <button id="dismissError" type="button">×</button>
+            </div>
+
+            <div id="errorLocation" class="error-location" hidden>
+              <span id="errorLineLabel">Line 1</span>
+              <pre id="errorSource"></pre>
+            </div>
+
+            <div id="errorHint" class="error-hint"></div>
+
+            <details id="traceDetails">
+              <summary>Show full traceback</summary>
+              <pre id="errorTrace"></pre>
+            </details>
+          </section>
 
           <pre id="console" class="console"><span class="muted">Python output will appear here.</span></pre>
 
@@ -160,6 +182,6 @@
 
   <input id="filePicker" type="file" accept=".py,.txt,text/plain" hidden>
 
-  <script src="app-v15.js?build=15"></script>
+  <script src="app-v16.js?build=16"></script>
 </body>
 </html>

@@ -96,3 +96,20 @@ so Python startup is served from the same GitHub Pages origin as Voidworks.
 - Uses `import { loadPyodide } from "./runtime/pyodide.mjs"`.
 - Compatible with Pyodide 314's removal of classic worker support.
 - Cache-busted app and worker filenames.
+
+
+## v1.6 — Friendly Python errors
+
+Python exceptions are now parsed into a compact error card showing:
+
+- exception type
+- concise message
+- source line number
+- offending line of code
+- column/caret for syntax errors where available
+- a plain-English hint for common Python errors
+- collapsible full traceback
+
+Handled hints include SyntaxError, IndentationError, NameError, TypeError,
+ValueError, IndexError, KeyError, ZeroDivisionError, ModuleNotFoundError,
+ImportError, AttributeError, FileNotFoundError, RecursionError and more.
