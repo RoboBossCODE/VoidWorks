@@ -61,3 +61,7 @@ Serve the folder through a local static web server (`python -m http.server 8000`
 ## Theme update
 
 Top-right light/dark toggle now remembers its selection on this device and updates the mobile browser theme colour.
+
+
+## v1.1 bug fix
+Restores editor initialization after theme-control refactor; theme preference persists across reloads.
