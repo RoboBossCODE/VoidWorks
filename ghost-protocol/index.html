@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#080d13" />
+  <meta name="description" content="GHOST//PROTOCOL — a fictional network-infiltration puzzle game from Voidworks." />
+  <title>GHOST//PROTOCOL — Voidworks</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="wordmark" href="../" aria-label="Back to Voidworks"><span class="brand-icon">◇</span><span>VOIDWORKS <i>/</i> <b>GHOST//PROTOCOL</b></span></a>
+    <div class="topright"><span class="top-state"><i></i> OFFLINE SIMULATION</span><button type="button" id="helpBtn" class="iconbtn" aria-label="How to play">?</button></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-left"><div class="eyebrow"><span class="eyebrow-line"></span> INTRUSION SIMULATOR <span class="chapter" id="chapterLabel">// 001</span></div>
+        <h1>GHOST<span>//</span><br />PROTOCOL<span class="cursor">_</span></h1>
+        <p>Break the network. Stay off the radar. Get the data out.</p>
+        <div class="mission-meta"><span id="missionName">01 / THE HANDSHAKE</span><span class="meta-sep">•</span><span id="missionBrief">Recover the missing transmission.</span></div>
+      </div>
+      <div class="hero-right" aria-hidden="true"><div class="rings"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="reticle"><span>GP</span><small>AUTHORIZED//NONE</small></div></div></div>
+    </section>
+
+    <section class="statusline" aria-label="Game status">
+      <div class="stat"><small>OPERATION</small><strong id="operation">ACTIVE <span class="blink">●</span></strong></div>
+      <div class="stat"><small>NODES ACCESSED</small><strong id="progress">01 / 03</strong></div>
+      <div class="stat"><small>THREAT LEVEL</small><strong id="threatLabel" class="mint">LOW</strong></div>
+      <div class="tracebox"><div class="trace-head"><span>TRACE DETECTION</span><strong id="traceValue">0%</strong></div><div class="trace-track" role="progressbar" aria-label="Trace detection" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="traceTrack"><span id="traceFill"></span></div></div>
+    </section>
+
+    <section class="workspace">
+      <div class="network panel"><div class="panel-heading"><div><span class="index">01</span><h2>NETWORK TOPOLOGY</h2></div><span id="netStatus" class="live"><i></i> CONNECTED</span></div>
+        <div class="network-board" id="networkBoard" aria-label="Interactive network map">
+          <svg id="linksSvg" class="links-svg" viewBox="0 0 600 370" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <div class="network-grid" aria-hidden="true"></div>
+          <div class="network-watermark" aria-hidden="true">G//P</div>
+          <div id="nodesLayer" class="nodes-layer"></div>
+          <div class="board-key"><span><i class="legend-dot accessed"></i> ACCESSED</span><span><i class="legend-dot available"></i> DISCOVERED</span><span><i class="legend-dot locked"></i> UNKNOWN</span></div>
+        </div>
+        <div class="map-footer"><span>ENCRYPTED TOPOLOGY // <span id="sectorLabel">SECTOR 01</span></span><button type="button" id="missionSelectBtn" class="ghost-btn">MISSIONS <span>↗</span></button></div>
+      </div>
+
+      <div class="rightstack">
+        <section class="target panel"><div class="panel-heading"><div><span class="index">02</span><h2>NODE INSPECTOR</h2></div><span id="nodeBadge" class="badge">ACCESS POINT</span></div>
+          <div class="target-body"><div class="target-id"><div class="target-symbol" id="targetGlyph">⬡</div><div><small>SELECTED TARGET</small><h3 id="targetName">ENTRY GATEWAY</h3><span class="target-sub" id="targetIp">NODE 01 // INTERNAL</span></div></div>
+            <div class="properties"><div><span>STATUS</span><strong id="targetStatus">CONNECTED</strong></div><div><span>SECURITY</span><strong id="targetSecurity">NONE</strong></div><div><span>PACKETS</span><strong id="targetPackets">READY</strong></div></div>
+            <p class="target-note" id="targetNote">Your entry point into the simulation. Select a linked node to begin.</p>
+            <div class="actions"><button type="button" id="scanBtn" class="action ghost" disabled><span>⌁</span> SCAN NODE</button><button type="button" id="breachBtn" class="action primary" disabled><span>↗</span> DECODE ACCESS</button><button type="button" id="extractBtn" class="action primary" hidden>◆ EXTRACT DATA</button></div>
+          </div>
+        </section>
+
+        <section class="terminal panel"><div class="panel-heading"><div><span class="index">03</span><h2>TERMINAL</h2></div><button type="button" id="clearLogBtn" class="tiny-btn">CLEAR</button></div>
+          <div class="terminal-window" id="terminalLog" aria-live="polite" aria-label="Simulation log"></div>
+          <form id="terminalForm" class="terminal-input"><label for="commandInput">ghost@void:~$</label><input id="commandInput" name="command" placeholder="type help or use the buttons" aria-label="Terminal command" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button type="submit" aria-label="Run command">↵</button></form>
+          <div class="quick-commands"><button type="button" data-command="help">HELP</button><button type="button" data-command="status">STATUS</button><button type="button" data-command="scan">SCAN</button><button type="button" data-command="map">MAP</button></div>
+        </section>
+      </div>
+    </section>
+    <footer><span>GHOST//PROTOCOL <i>©</i> VOIDWORKS</span><span>FICTIONAL SYSTEMS ONLY <b>•</b> NO REAL NETWORK CONNECTIONS</span><span>BUILD 001</span></footer>
+  </main>
+
+  <dialog id="puzzleDialog" class="modal"><div class="modal-top"><span>SECURITY CHALLENGE <b>// PACKET REASSEMBLY</b></span><button type="button" class="close" id="closePuzzle" aria-label="Close">×</button></div><div class="modal-body"><div class="warning-icon">⌁</div><h2>REASSEMBLE THE KEY.</h2><p>The packets arrived out of order. Read the sequence numbers and enter the four symbols in order <b>01 → 04</b>. One packet may be decoy traffic.</p><div id="packetGrid" class="packet-grid"></div><form id="puzzleForm"><label for="keyInput">ACCESS KEY</label><div class="keyrow"><input id="keyInput" inputmode="text" maxlength="4" minlength="4" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="_ _ _ _" required/><button type="submit" class="primary">AUTHENTICATE ↗</button></div><div id="puzzleFeedback" role="status"></div></form></div></dialog>
+  <dialog id="infoDialog" class="modal"><div class="modal-top"><span>GHOST//PROTOCOL <b>// BRIEFING</b></span><button type="button" id="closeInfo" class="close" aria-label="Close">×</button></div><div class="modal-body"><h2>YOUR MISSION.</h2><p>Follow the connected nodes to the data vault. Select a discovered node, scan its traffic and reconstruct the scrambled four-symbol access key. Every scan and failed attempt increases your trace. Get to the vault and extract the data before your trace reaches 100%.</p><div class="instructions"><div><b>01</b><span>SELECT</span><p>Tap a reachable node on the network map.</p></div><div><b>02</b><span>SCAN</span><p>Reveal the packets on that node.</p></div><div><b>03</b><span>DECODE</span><p>Reassemble its access key in sequence order.</p></div><div><b>04</b><span>EXTRACT</span><p>Reach the final node and finish your mission.</p></div></div><p class="subtle">This is a puzzle game with invented commands and networks. It never connects to real devices.</p><button type="button" class="primary wide" id="gotIt">INITIATE SESSION ↗</button></div></dialog>
+  <dialog id="endDialog" class="modal"><div class="modal-top"><span>MISSION REPORT <b>// VOIDWORKS</b></span></div><div class="modal-body end-body"><span class="end-symbol" id="endGlyph">◇</span><h2 id="endTitle">MISSION COMPLETE.</h2><p id="endText">Transmission recovered.</p><div class="end-stats"><div><span>TRACE</span><b id="endTrace">0%</b></div><div><span>NODES</span><b id="endNodes">3 / 3</b></div></div><div class="end-actions"><button type="button" class="action ghost" id="replayBtn">REPLAY MISSION</button><button type="button" class="primary" id="nextBtn">NEXT MISSION ↗</button></div></div></dialog>
+  <dialog id="missionsDialog" class="modal"><div class="modal-top"><span>OPERATIONS <b>// SELECT MISSION</b></span><button type="button" class="close" id="closeMissions" aria-label="Close">×</button></div><div class="modal-body"><h2>AVAILABLE OPERATIONS.</h2><div id="missionList" class="mission-list"></div></div></dialog>
+</body>
+</html>
