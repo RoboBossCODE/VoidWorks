@@ -30,14 +30,13 @@ const PROJECTS = [
     glow: "rgba(158,244,205,.55)",
   },
   {
-    name: "GIF//STUDIO",
-    description: "Advanced GIF maker with video conversion, frame editing and custom FPS",
-    category: "tools",
-    status: "live",
-    icon: "Gif",
-    url: "./gif-studio/",
-    tag: "Gif editor",
-    glow: "rgba(134,244,206,.5)",
-    placeholder: true
+  name: "GIF//STUDIO",
+  description: "Advanced image-to-GIF and video-to-GIF editor with a full frame timeline.",
+  category: "tools",
+  status: "live",
+  icon: "▧",
+  url: "./gif-studio/",
+  tag: "GIF editor",
+  glow: "rgba(134,244,206,.5)"
   }
 ];
