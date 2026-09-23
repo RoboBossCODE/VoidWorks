@@ -11,38 +11,13 @@ html.light-preload { color-scheme: light; background:#eaf0ef; }
 html.light-preload body { background:#eaf0ef; }
 #themeButton { font-size:18px; line-height:1; flex-shrink:0; touch-action:manipulation; }
 #themeButton:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
-/* Original Voidworks line-style logo */
-.brand-mark {
-  display: inline-block;
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--line, #34413f);
-  border-radius: 8px;
-  position: relative;
-  background: linear-gradient(
-    145deg,
-    rgba(157, 247, 212, .1),
-    rgba(126, 140, 255, .08)
-  );
-}
 
-.brand-mark i {
-  position: absolute;
-  width: 11px;
-  height: 2px;
-  background: var(--text);
-  opacity: .9;
-}
+/* Exact logo geometry and styling from the Voidworks homepage */
+.brand-mark{width:30px;height:30px;border:1px solid var(--line);border-radius:8px;position:relative;background:linear-gradient(145deg,rgba(157,247,212,.1),rgba(126,140,255,.08))}
+.brand-mark i{position:absolute;width:11px;height:2px;background:var(--text);opacity:.9}
+.brand-mark i:first-child{left:7px;top:8px;transform:rotate(45deg)}
+.brand-mark i:last-child{right:7px;bottom:8px;transform:rotate(45deg)}
+.wordmark .brand-mark{display:inline-block;flex:0 0 30px}
 
-.brand-mark i:first-child {
-  left: 7px;
-  top: 8px;
-  transform: rotate(45deg);
-}
-
-.brand-mark i:last-child {
-  right: 7px;
-  bottom: 8px;
-  transform: rotate(45deg);
-}
+/* Match the homepage outline using the GIF Studio border token. */
+.wordmark .brand-mark{--line:var(--stroke)}
