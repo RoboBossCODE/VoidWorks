@@ -30,14 +30,14 @@ const PROJECTS = [
     glow: "rgba(158,244,205,.55)",
   },
   {
-    name: "Project Slot 04",
-    description: "Another empty slot ready for a future Voidworks project.",
-    category: "games",
-    status: "wip",
-    icon: "✣",
-    url: "#",
-    tag: "Coming soon",
-    glow: "rgba(255,111,145,.35)",
+    name: "GIF//STUDIO",
+    description: "Advanced GIF maker with video conversion, frame editing and custom FPS",
+    category: "tools",
+    status: "live",
+    icon: "Gif",
+    url: "./gif-studio/",
+    tag: "Gif editor",
+    glow: "rgba(134,244,206,.5)",
     placeholder: true
   }
 ];
