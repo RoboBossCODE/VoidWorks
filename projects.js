@@ -20,15 +20,14 @@ const PROJECTS = [
     glow: "rgba(157,247,212,.55)",
   },
   {
-    name: "Project Slot 03",
-    description: "Another empty slot ready for a future Voidworks project.",
+    name: "GHOST//PROTOCOL",
+    description: "A network-infiltration puzzle game.",
     category: "games",
-    status: "wip",
-    icon: "✣",
-    url: "#",
-    tag: "Coming soon",
-    glow: "rgba(255,111,145,.35)",
-    placeholder: true
+    status: "live",
+    icon: "☐",
+    url: "./ghost-protocol/",
+    tag: "Puzzle game",
+    glow: "rgba(158,244,205,.55)",
   },
   {
     name: "Project Slot 04",
