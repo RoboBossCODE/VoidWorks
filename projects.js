@@ -29,7 +29,7 @@ const PROJECTS = [
     tag: "Coming soon",
     glow: "rgba(255,111,145,.35)",
     placeholder: true
-  }
+  },
   {
     name: "Project Slot 04",
     description: "Another empty slot ready for a future Voidworks project.",
