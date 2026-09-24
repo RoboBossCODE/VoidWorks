@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#08090d">
+  <title>VOIDWORKS ID</title>
+  <meta name="description" content="Optional Voidworks account access.">
+  <link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="../" aria-label="Back to Voidworks">
+      <span class="brand-mark"><i></i><i></i></span>
+      <span>VOIDWORKS <small>/ ID</small></span>
+    </a>
+    <div class="top-actions">
+      <a class="hub-link" href="../">← HUB</a>
+      <button id="themeBtn" class="theme" type="button" aria-label="Toggle light and dark mode" title="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <main class="auth-shell">
+    <section class="intro-panel">
+      <div class="eyebrow"><span></span> OPTIONAL VOIDWORKS ACCOUNT</div>
+      <h1>One ID.<br><em>Every project.</em></h1>
+      <p>Keep using Voidworks without an account, or sign in to unlock future cloud saves, synced progress and account features.</p>
+      <div class="feature-list">
+        <div><span>01</span><b>Optional by design</b><small>Voidworks tools and games remain usable without signing in.</small></div>
+        <div><span>02</span><b>Private authentication</b><small>Microsoft passwords are handled only by Microsoft.</small></div>
+        <div><span>03</span><b>Built to grow</b><small>Profiles, cloud saves and project feeds can be added later.</small></div>
+      </div>
+      <div class="security-note">
+        <strong>IMPORTANT</strong>
+        <p>Do not store financial information, banking details, medical data, identification documents, passwords, recovery codes or other sensitive information on Voidworks.</p>
+      </div>
+    </section>
+
+    <section class="auth-card" aria-labelledby="cardTitle">
+      <div class="card-top">
+        <div>
+          <div class="kicker">VOIDWORKS / ACCESS</div>
+          <h2 id="cardTitle">Welcome.</h2>
+        </div>
+        <span class="status-dot">PREVIEW</span>
+      </div>
+
+      <div class="mode-tabs" role="tablist" aria-label="Account mode">
+        <button id="loginTab" class="mode-tab active" type="button" role="tab" aria-selected="true">SIGN IN</button>
+        <button id="signupTab" class="mode-tab" type="button" role="tab" aria-selected="false">SIGN UP</button>
+      </div>
+
+      <section id="loginPanel" class="panel active">
+        <button id="microsoftLogin" class="microsoft-btn" type="button">
+          <span class="ms-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          Continue with Microsoft
+        </button>
+        <div class="divider"><span>OR</span></div>
+        <form id="loginForm" novalidate>
+          <label>Email or Voidworks username
+            <input id="loginIdentity" name="identity" autocomplete="username" placeholder="you@example.com or username" required>
+          </label>
+          <label>Password
+            <span class="password-wrap">
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Your Voidworks password" required>
+              <button class="show-pass" type="button" data-for="loginPassword">SHOW</button>
+            </span>
+          </label>
+          <div class="form-row"><label class="check"><input id="rememberMe" type="checkbox" checked><span>Remember me</span></label><button id="forgotBtn" class="text-btn" type="button">Forgot password?</button></div>
+          <button class="primary-btn" type="submit">SIGN IN →</button>
+        </form>
+      </section>
+
+      <section id="signupPanel" class="panel">
+        <div class="steps" aria-label="Signup progress"><span class="on">1</span><i></i><span>2</span><i></i><span>3</span></div>
+
+        <div id="signupStep1" class="signup-step active">
+          <p class="step-copy">Start with your email address, or let Microsoft verify your identity.</p>
+          <button id="microsoftSignup" class="microsoft-btn" type="button">
+            <span class="ms-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            Sign up with Microsoft
+          </button>
+          <div class="divider"><span>OR</span></div>
+          <form id="emailStartForm" novalidate>
+            <label>Email address
+              <input id="signupEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+            </label>
+            <button class="primary-btn" type="submit">SEND VERIFICATION CODE →</button>
+          </form>
+        </div>
+
+        <div id="signupStep2" class="signup-step">
+          <button class="back-btn" type="button" data-back="1">← CHANGE EMAIL</button>
+          <div class="code-icon">•••</div>
+          <h3>Check your email.</h3>
+          <p class="step-copy">We sent a six-digit verification code to <strong id="verifyEmailLabel">your email</strong>.</p>
+          <form id="verifyForm" novalidate>
+            <label>Verification code
+              <input id="verificationCode" class="code-input" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="000000" required>
+            </label>
+            <button class="primary-btn" type="submit">VERIFY EMAIL →</button>
+          </form>
+          <button id="resendBtn" class="text-btn full-text" type="button">Resend code</button>
+        </div>
+
+        <div id="signupStep3" class="signup-step">
+          <button class="back-btn" type="button" data-back="2">← BACK</button>
+          <p id="accountMethod" class="method-chip">EMAIL VERIFIED</p>
+          <form id="profileForm" novalidate>
+            <label>Voidworks username
+              <input id="signupUsername" autocomplete="username" maxlength="24" placeholder="Choose a username" required>
+              <small>3–24 characters. Letters, numbers, underscores and hyphens.</small>
+            </label>
+            <label id="passwordLabel">Voidworks password
+              <span class="password-wrap">
+                <input id="signupPassword" type="password" autocomplete="new-password" minlength="10" placeholder="At least 10 characters" required>
+                <button class="show-pass" type="button" data-for="signupPassword">SHOW</button>
+              </span>
+              <small>Use a unique password that you do not use anywhere else.</small>
+            </label>
+            <div class="warning-box"><b>Do not store sensitive information.</b><span>Voidworks is not a password manager, bank, medical system or secure document vault.</span></div>
+            <label class="check terms-check"><input id="termsCheck" type="checkbox" required><span>I agree to the <button id="termsBtn" class="inline-link" type="button">Terms of Service</button> and acknowledge the sensitive-information warning.</span></label>
+            <button class="primary-btn" type="submit">CREATE VOIDWORKS ID →</button>
+          </form>
+        </div>
+      </section>
+
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <p class="privacy-foot">Accounts are optional. This preview does not send credentials anywhere yet.</p>
+    </section>
+  </main>
+
+  <dialog id="forgotDialog">
+    <div class="dialog-head"><div><div class="kicker">ACCOUNT RECOVERY</div><h3>Reset your password</h3></div><button class="dialog-close" type="button" data-close="forgotDialog">×</button></div>
+    <p>Enter your email address. When the backend is connected, Voidworks will email you a secure reset link.</p>
+    <form id="forgotForm"><label>Email address<input id="forgotEmail" type="email" autocomplete="email" placeholder="you@example.com" required></label><button class="primary-btn" type="submit">SEND RESET EMAIL →</button></form>
+  </dialog>
+
+  <dialog id="termsDialog" class="terms-dialog">
+    <div class="dialog-head"><div><div class="kicker">VOIDWORKS / LEGAL</div><h3>Terms of Service — draft</h3></div><button class="dialog-close" type="button" data-close="termsDialog">×</button></div>
+    <div class="terms-body">
+      <h4>1. Experimental service</h4><p>Voidworks is an independent experimental platform. Features may change, be unavailable or be removed.</p>
+      <h4>2. Sensitive information</h4><p>Do not upload, store or share financial information, banking details, payment card information, government identification, medical information, passwords for other services, recovery codes, private credentials or confidential documents through Voidworks.</p>
+      <h4>3. Account security</h4><p>Use a unique password for your Voidworks account. Never enter your Microsoft password directly into Voidworks; Microsoft authentication must take place on Microsoft's own sign-in service.</p>
+      <h4>4. Security limitations</h4><p>Reasonable security measures should be used, but no online service can guarantee absolute security. Voidworks is not intended to operate as a secure vault, password manager, financial service, medical record system or confidential document store.</p>
+      <h4>5. Account moderation</h4><p>Accounts may later be suspended or restricted for abuse, spam, attempts to compromise the service, or serious breaches of community rules. Moderation features will be documented before public posting features are enabled.</p>
+    </div>
+    <button class="primary-btn" type="button" data-close="termsDialog">CLOSE TERMS</button>
+  </dialog>
+
+  <script src="app.js?v=1"></script>
+</body>
+</html>
