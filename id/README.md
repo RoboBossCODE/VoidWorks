@@ -1,16 +1,19 @@
-# VOIDWORKS ID v0.1 — Frontend Preview
+# VOIDWORKS ID v1.0 — Supabase build
 
-This is the frontend/UI stage of VOIDWORKS ID. It is intentionally not connected to a backend yet.
+This is the real browser-auth build for GitHub Pages.
 
-## Included
-- Exact original Voidworks line logo markup/CSS from the homepage build
-- Light/dark mode with saved preference
-- Optional login/signup presentation
-- Email -> six-digit verification -> username/password signup flow preview
-- Microsoft signup/login buttons (UI only at this stage)
-- Forgot password flow preview
-- Terms of Service draft + sensitive-information warning
-- Responsive phone layout
+## Before uploading
+Open `config.js` and replace:
 
-## Important
-No credentials are sent anywhere in this version. Real authentication will be connected in the next stage using Supabase Auth and Microsoft OAuth.
+`PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE`
+
+with the Supabase **publishable** key (`sb_publishable_...`). Never use a secret/service_role key.
+
+## Upload structure
+Upload the contents of this folder to `/VoidWorks/id/`, keeping the `reset-password/` subfolder.
+
+## Supabase database hardening still required
+Run the supplied `004_harden_voidworks_id.sql` once in Supabase SQL Editor before public testing.
+
+## Google
+The Google buttons are wired, but Google must be enabled/configured in Supabase Authentication before they can succeed.
