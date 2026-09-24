@@ -3,6 +3,6 @@
 // NEVER place your Supabase secret/service_role key in this file.
 window.VOIDWORKS_AUTH_CONFIG = {
   supabaseUrl: 'https://vcrrjlgmiapmvsaohute.supabase.co',
-  publishableKey: 'PASTE_YOUR_SB_PUBLISHABLE_KEY_HERE',
-  siteBase: 'https://robobosscode.github.io/VoidWorks'
+  publishableKey: 'sb_publishable_PGmmFVYMEBcxarx8hM65mQ_zQfokbgv',
+  siteBase: 'https://robobosscode.github.io/VoidWorks/'
 };
